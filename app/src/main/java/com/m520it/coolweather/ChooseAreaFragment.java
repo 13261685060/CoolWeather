@@ -1,10 +1,10 @@
 package com.m520it.coolweather;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +58,6 @@ public class ChooseAreaFragment extends Fragment {
     private City selectedCity;
     private int currentLevel;
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.choose_area,container,false);
@@ -120,6 +119,10 @@ public class ChooseAreaFragment extends Fragment {
             queryFromServer(address,"province");
         }
     }
+
+    /**
+     * 查询全国市，先从数据库中查，如果没有再到服务器中查询
+     */
     private void queryCities() {
         titleText.setText(selectedProvince.getProvinceName());
         backButton.setVisibility(View.VISIBLE);
@@ -196,7 +199,6 @@ public class ChooseAreaFragment extends Fragment {
             }
         });
     }
-
     /**
      * 显示进度对话框
      */
